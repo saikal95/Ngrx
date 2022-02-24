@@ -27,17 +27,17 @@ const run = async () => {
     title: 'Antichrist Superstar',
     artist: MarylinManson,
     year: 1996,
-    image: '',
+    image: 'mm.jpg',
   },{
     title: 'Digital Distortion',
     artist: Iggy,
     year: 2017,
-    image: '',
+    image: 'iggy.jpg',
   }, {
     title: 'Crazy Train',
     artist: Ozzie,
     year: 1986,
-    image: '',
+    image: 'ozzie.jpg',
   });
 
   await mongoose.connection.close();

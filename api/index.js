@@ -11,8 +11,8 @@ const port = 8000;
 app.use(cors({origin: 'http://localhost:4200'}));
 app.use(express.json());
 app.use(express.static('public'));
-app.use('/album', album);
-app.use('/artist', artist);
+app.use('/albums', album);
+app.use('/artists', artist);
 
 const run = async () => {
   await mongoose.connect(config.mongo.db, config.mongo.options);

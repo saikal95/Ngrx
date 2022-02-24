@@ -1,5 +1,5 @@
 const express = require('express');
-const Artist = require('../models/Album');
+const Artist = require('../models/Artist');
 
 const router = express.Router();
 
