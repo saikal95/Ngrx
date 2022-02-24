@@ -55,5 +55,33 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.post('/', upload.single('image'), async (req, res, next) => {
+  try {
+    if (!req.body.title || !req.body.artist) {
+      return res.status(400).send({message: 'Post is not possible now, you should provide title and artist at least'});
+    }
+
+    const albumData = {
+      title: req.body.title,
+      artist: req.body.artist,
+      year: req.body.year,
+      image: null,
+    };
+
+    if (req.file) {
+      albumData.image = req.file.filename;
+    }
+
+    const album = new Album(albumData);
+
+    await album.save();
+
+    return res.send({message: 'Created new Album', id: album._id});
+  } catch (e) {
+    next(e);
+  }
+});
+
+
 
 module.exports = router;
