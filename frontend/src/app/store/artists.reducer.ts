@@ -11,12 +11,19 @@ const initialState : ArtistsState = {
 
 export const artistsReducer = createReducer(
   initialState,
+
   on(fetchArtistsRequest, state => ({...state, fetchLoading: true})),
   on(fetchArtistsSuccess, (state, {artists}) => ({
     ...state,
     fetchLoading: false,
     artists
   })),
+  // on(fetchArtistsSuccess, (state, {artists}) => {
+  //   const stateCopy = {...state, fetchLoading: false, artists}
+  //   console.log(artists, 'hdhhjshksdjf')
+  //  return state;
+  // }),
+
   on(fetchArtistsFailure, (state, {error}) => ({
     ...state,
     fetchLoading: false,

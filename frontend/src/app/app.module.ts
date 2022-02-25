@@ -8,18 +8,33 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {artistsReducer} from "./store/artists.reducer";
 import {HttpClientModule} from "@angular/common/http";
+import { ArtistsComponent } from './artists/artists.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {FlexModule} from "@angular/flex-layout";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {ArtistsEffects} from "./store/artists.effects";
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ArtistsComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ artists: artistsReducer}, {}),
-    EffectsModule.forRoot([])
+    StoreModule.forRoot({artists: artistsReducer}, {}),
+    EffectsModule.forRoot([ArtistsEffects]),
+    MatProgressSpinnerModule,
+    FlexModule,
+    MatDividerModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

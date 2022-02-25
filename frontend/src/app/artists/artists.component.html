@@ -1,0 +1,44 @@
+<div fxLayout="row" fxLayoutAlign="space-between flex-start">
+  <h1>Artists</h1>
+</div>
+
+<div class="error" *ngIf="error | async">
+  {{ error | async }}
+</div>
+
+<!--<mat-progress-spinner-->
+<!--  *ngIf="(loading | async) else artistsArea"-->
+<!--  mode="indeterminate"-->
+<!--&gt;</mat-progress-spinner>-->
+
+
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">ghghgjgjg
+    <div
+      fxFlex.xs="100%"
+      fxFlex.sm="50%"
+      fxFlex.lt-lg="33%"
+      fxFlex="25%"
+      *ngFor="let artist of artists | async"
+    >
+      <mat-card>
+        <mat-card-title>{{ artist.title }}ghjhjhkjk</mat-card-title>
+        <img
+          [src]="artist.image"
+          [alt]="'Photo of ' + artist.title"
+          mat-card-image
+        />
+        <mat-card-content>
+          <p>{{ artist.image  }}</p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <a
+            [routerLink]="['/artists/', artist.id]"
+            mat-button
+          >VIEW</a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+
