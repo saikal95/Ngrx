@@ -1,5 +1,6 @@
 const express = require('express');
 const Artist = require('../models/Artist');
+const Album = require("../models/Album");
 
 const router = express.Router();
 
@@ -22,6 +23,7 @@ router.post("/", async (req, res, next) => {
     next(e);
   }
 });
+
 
 
 module.exports = router;

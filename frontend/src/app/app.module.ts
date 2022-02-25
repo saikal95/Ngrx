@@ -16,12 +16,17 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {ArtistsEffects} from "./store/artists.effects";
 import { LayoutComponent } from './layout/layout.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {ImagePipe} from "./pipes/image.pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtistsComponent,
-    LayoutComponent
+    LayoutComponent,
+    ImagePipe
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,10 @@ import { LayoutComponent } from './layout/layout.component';
     FlexModule,
     MatDividerModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

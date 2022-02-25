@@ -18,12 +18,6 @@ export const artistsReducer = createReducer(
     fetchLoading: false,
     artists
   })),
-  // on(fetchArtistsSuccess, (state, {artists}) => {
-  //   const stateCopy = {...state, fetchLoading: false, artists}
-  //   console.log(artists, 'hdhhjshksdjf')
-  //  return state;
-  // }),
-
   on(fetchArtistsFailure, (state, {error}) => ({
     ...state,
     fetchLoading: false,

@@ -14,13 +14,16 @@ const run = async () => {
 
   const [ MarylinManson, Iggy, Ozzie] = await Artist.create({
     title: 'MarylinManson',
-    information: 'American rock singer'
+    information: 'American rock singer',
+    image: 'marm.jpg',
   }, {
     title: 'Iggy',
-    information: 'Grammy Award for Best Recording of the Year 2021'
+    information: 'Grammy Award for Best Recording of the Year 2021',
+    image: 'iggyAz.jpeg',
   }, {
     title: 'Ozzie',
-    information: 'British rock singer'
+    information: 'British rock singer',
+    image: 'ozOs.jpg',
   });
 
   await Album.create({

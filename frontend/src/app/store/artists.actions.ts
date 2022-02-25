@@ -12,14 +12,3 @@ export const fetchArtistsFailure = createAction(
   props<{error: string}>()
 );
 
-// export const createProductRequest = createAction(
-//   '[Products] Create Request',
-//   props<{productData: ProductData}>()
-// );
-// export const createProductSuccess = createAction(
-//   '[Products] Create Success'
-// );
-// export const createProductFailure = createAction(
-//   '[Products] Create Failure',
-//   props<{error: string}>()
-// );

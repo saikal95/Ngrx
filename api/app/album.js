@@ -24,9 +24,6 @@ router.get('/', async (req, res, next) => {
     const query = {};
     const sort = {};
 
-    if (req.query.filter === 'image') {
-      query.image = {$ne: null};
-    }
 
     if (req.query.artist) {
       query.artist = req.query.artist;
