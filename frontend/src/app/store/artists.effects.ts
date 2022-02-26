@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import { Router} from "@angular/router";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {ArtistsService} from "../services/artists.service";
 import {fetchArtistsFailure, fetchArtistsRequest, fetchArtistsSuccess} from "./artists.actions";
@@ -22,6 +21,5 @@ export class ArtistsEffects {
   constructor(
     private actions: Actions,
     private artistsService: ArtistsService,
-    private router: Router
   ) {}
 }

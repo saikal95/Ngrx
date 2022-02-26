@@ -4,6 +4,7 @@ const path = require('path');
 const { nanoid } = require('nanoid');
 const config = require('../config');
 const Album = require("../models/Album");
+const Artist = require("../models/Artist");
 
 const router = express.Router();
 
@@ -24,14 +25,19 @@ router.get('/', async (req, res, next) => {
     const query = {};
     const sort = {};
 
-
+    console.log(req.query);
     if (req.query.artist) {
       query.artist = req.query.artist;
     }
 
     const albums = await Album.find(query).sort(sort).populate("artist", "title information");
+    const artist = await Artist.findOne(query).sort(sort);
+    console.log(artist)
+    const newAr = [];
+    newAr.push(albums, artist);
 
-    return res.send(albums);
+
+    return res.send(newAr);
   } catch (e) {
     next(e);
   }
@@ -41,6 +47,9 @@ router.get('/:id', async (req, res, next) => {
   try {
     const sort = {};
     const album = await Album.findById(req.params.id).sort(sort).populate("artist", "title information");
+
+    console.log()
+
 
     if (!album) {
       return res.status(404).send({message: 'Not found'});
