@@ -20,21 +20,25 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {ImagePipe} from "./pipes/image.pipe";
+import {albumsReducer} from "./store/albums.reducer";
+import { AlbumsComponent } from './albums/albums.component';
+import {AlbumsEffects} from "./store/albums.effects";
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtistsComponent,
     LayoutComponent,
-    ImagePipe
+    ImagePipe,
+    AlbumsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({artists: artistsReducer}, {}),
-    EffectsModule.forRoot([ArtistsEffects]),
+    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer} , {}),
+    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects]),
     MatProgressSpinnerModule,
     FlexModule,
     MatDividerModule,

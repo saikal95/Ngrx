@@ -12,7 +12,7 @@ const run = async () => {
     await mongoose.connection.db.dropCollection(coll.name);
   }
 
-  const [ MarylinManson, Iggy, Ozzie] = await Artist.create({
+  const [MarylinManson, Iggy, Ozzie] = await Artist.create({
     title: 'MarylinManson',
     information: 'American rock singer',
     image: 'marm.jpg',
@@ -27,21 +27,28 @@ const run = async () => {
   });
 
   await Album.create({
-    title: 'Antichrist Superstar',
-    artist: MarylinManson,
-    year: 1996,
-    image: 'mm.jpg',
-  },{
-    title: 'Digital Distortion',
-    artist: Iggy,
-    year: 2017,
-    image: 'iggy.jpg',
-  }, {
-    title: 'Crazy Train',
-    artist: Ozzie,
-    year: 1986,
-    image: 'ozzie.jpg',
-  });
+      title: 'Antichrist Superstar',
+      artist: MarylinManson,
+      year: 1996,
+      image: 'mm.jpg',
+    },
+    {
+      title: 'Pale Emperor',
+      artist: MarylinManson,
+      year: 2003,
+      image: 'pl.jpg',
+    },
+    {
+      title: 'Digital Distortion',
+      artist: Iggy,
+      year: 2017,
+      image: 'iggy.jpg',
+    }, {
+      title: 'Crazy Train',
+      artist: Ozzie,
+      year: 1986,
+      image: 'ozzie.jpg',
+    });
 
   await mongoose.connection.close();
 };

@@ -14,5 +14,6 @@ export interface ApiAlbumData {
   artist: string,
   year: number,
   image: string,
+
 }
 
