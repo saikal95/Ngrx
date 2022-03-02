@@ -3,6 +3,10 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const album = require('./app/album');
 const artist = require('./app/artist');
+const track = require('./app/track');
+const user = require('./app/user');
+const trackHistory = require('./app/trackHistory')
+
 const config = require('./config');
 const app = express();
 
@@ -13,6 +17,10 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/albums', album);
 app.use('/artists', artist);
+app.use('/track', track)
+app.use('/user', user,)
+app.use('/trackHistory', trackHistory)
+
 
 const run = async () => {
   await mongoose.connect(config.mongo.db, config.mongo.options);
