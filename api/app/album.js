@@ -32,12 +32,12 @@ router.get('/', async (req, res, next) => {
 
     const albums = await Album.find(query).sort(sort).populate("artist", "title information");
     const artist = await Artist.findOne(query).sort(sort);
-    console.log(artist)
-    const newAr = [];
-    newAr.push(albums, artist);
+    // console.log(artist)
+    // const newAr = [];
+    // newAr.push(albums, artist);
 
 
-    return res.send(newAr);
+    return res.send(albums);
   } catch (e) {
     next(e);
   }
