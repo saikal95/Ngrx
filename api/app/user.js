@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const path = require('path');
 const { nanoid } = require('nanoid');
 const config = require('../config');
@@ -10,25 +11,23 @@ const router = express.Router();
 
 
 router.post('/', async (req, res, next) => {
-  try {
-    // if (!req.body.title || !req.body.artist) {
-    //   return res.status(400).send({message: 'Post is not possible now, you should provide title and artist at least'});
-    // }
+    try {
+      const user = new User(req.body);
+      user.generateToken();
+      await user.save();
 
-    // const albumData = {
+      return res.send(user);
+    } catch (error) {
+      if (error instanceof mongoose.Error.ValidationError) {
+        return res.status(400).send(error);
+      }
 
-    // };
-
-
-
-    // await album.save();
-
-    return res.send({message: 'Created new Album', id: album._id});
-
-  } catch (e) {
-    next(e);
-  }
+      return next(error);
+    }
 });
+
+
+
 
 
 
