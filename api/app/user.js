@@ -1,8 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const path = require('path');
-const {nanoid} = require('nanoid');
-const config = require('../config');
 const User = require("../models/User");
 
 
