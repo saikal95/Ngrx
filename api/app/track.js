@@ -1,6 +1,5 @@
 const express = require('express');
 const Track = require("../models/Track");
-const Album = require("../models/Album");
 
 const router = express.Router();
 
@@ -8,15 +7,14 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    // const query = {};
-    // const sort = {};
-    //
-    // const tracks = await Track.find(query).sort(sort).populate("album", " year");
-    //  req.query.params = ???
+    const query = {};
 
-    const tracks = await Track.find();
+    if (req.query.album) {
+      query.album = req.query.album;
+    }
 
-    console.log(tracks);
+    const tracks = await Track.find(query).populate("album", "title");
+
     return res.send(tracks);
   } catch (e) {
     next(e);

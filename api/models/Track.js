@@ -8,7 +8,7 @@ const TrackSchema = new Schema({
   },
   album: {
     type: Schema.Types.ObjectId,
-    ref: 'Product',
+    ref: 'Album',
     required: true
   },
   duration: {
@@ -18,6 +18,6 @@ const TrackSchema = new Schema({
 
 });
 
-const Track = mongoose.model('Product', TrackSchema);
+const Track = mongoose.model('Track', TrackSchema);
 
 module.exports = Track;

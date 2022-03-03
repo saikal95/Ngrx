@@ -1,7 +1,5 @@
 const express = require('express');
-const path = require('path');
-const { nanoid } = require('nanoid');
-const config = require('../config');
+const auth = require('../middleware/auth');
 const TrackHistory = require("../models/TrackHIstory");
 
 
@@ -9,25 +7,29 @@ const router = express.Router();
 
 
 
-router.post('/', async (req, res, next) => {
+router.post('/', auth, async (req, res, next) => {
+
   try {
-    // if (!req.body.title || !req.body.artist) {
-    //   return res.status(400).send({message: 'Post is not possible now, you should provide title and artist at least'});
-    // }
+    const dateTime = new Date().toString();
 
-    // const albumData = {
+    const trackHistoryData = {
+      user: req.user._id,
+      track: req.body.track,
+      dateTime: dateTime,
+    };
 
-    // };
+    const trackHistory = new TrackHistory(trackHistoryData);
 
+    console.log(trackHistory);
+    await trackHistory.save();
 
-
-    // await album.save();
-
-    return res.send({message: 'Created new Album', id: album._id});
+    return res.send({message: 'TrackHistory is created', trackHistory})
 
   } catch (e) {
-    next(e);
+    next(e)
   }
+
+
 });
 
 

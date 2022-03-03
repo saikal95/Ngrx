@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const config = require("./config");
 const Artist = require("./models/Artist");
 const Album = require("./models/Album");
+const Track = require("./models/Track");
 
 const run = async () => {
   await mongoose.connect(config.mongo.db, config.mongo.options);
@@ -26,7 +27,7 @@ const run = async () => {
     image: 'ozOs.jpg',
   });
 
-  await Album.create({
+  const [antichristSuperstar, paleEmperor, digitalDistortion, crazyTrain] = await Album.create({
       title: 'Antichrist Superstar',
       artist: MarylinManson,
       year: 1996,
@@ -49,6 +50,34 @@ const run = async () => {
       year: 1986,
       image: 'ozzie.jpg',
     });
+
+  await Track.create({
+      title: 'Man that you fear',
+      album: antichristSuperstar,
+      duration: '3:16'
+    },
+    {
+      title: 'Tainted love',
+      album: paleEmperor,
+      duration: "3:17",
+    },
+    {
+      title: 'Black Widow',
+      album: digitalDistortion,
+      duration: "3:18"
+    },
+    {
+      title: 'Blizzard of OZZ',
+      album: crazyTrain,
+      duration: "4:00"
+    },
+    {
+      title: 'Down to Earth',
+      album: crazyTrain,
+      duration: "3:12",
+    }
+  );
+
 
   await mongoose.connection.close();
 };
