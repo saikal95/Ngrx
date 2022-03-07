@@ -25,12 +25,18 @@ router.get('/', async (req, res, next) => {
     const query = {};
     const sort = {};
 
-    console.log(req.query);
     if (req.query.artist) {
       query.artist = req.query.artist;
     }
 
+
     const albums = await Album.find(query).sort(sort).populate("artist", "title information");
+
+    for (let item of albums) {
+      for (const key of Object.keys(item)) {
+        console.log(`${key}`);
+      }
+    }
 
 
     return res.send(albums);

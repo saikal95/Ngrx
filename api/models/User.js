@@ -24,14 +24,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  validate: {
-    validator: async value => {
-      const user = await User.findOne({email: value});
-      if(user) return false;
-    },
-    message: 'This user is already registered'
-
-  }
+  // validate: {
+  //   validator: async value => {
+  //     const user = await User.findOne({email: value});
+  //     if(user) return false;
+  //   },
+  //   message: 'This user is already registered'
+  //
+  // }
 });
 
 

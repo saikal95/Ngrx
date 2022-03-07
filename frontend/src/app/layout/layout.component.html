@@ -1,8 +1,12 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <a routerLink="/">Artists</a>
+  <mat-sidenav-content >
+    <mat-toolbar color="primary"fxLayout="row" fxLayoutAlign="space-between center">
+      <div ><a routerLink="/">Artists</a></div>
+      <nav>
+        <a mat-button routerLink="/register">REGISTER</a>
+      </nav>
     </mat-toolbar>
+
     <div class="content">
       <ng-content></ng-content>
     </div>

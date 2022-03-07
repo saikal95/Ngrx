@@ -23,6 +23,10 @@ import {ImagePipe} from "./pipes/image.pipe";
 import {albumsReducer} from "./store/albums.reducer";
 import { AlbumsComponent } from './albums/albums.component';
 import {AlbumsEffects} from "./store/albums.effects";
+import { RegisterComponent } from './register/register.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -30,14 +34,15 @@ import {AlbumsEffects} from "./store/albums.effects";
     ArtistsComponent,
     LayoutComponent,
     ImagePipe,
-    AlbumsComponent
+    AlbumsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer} , {}),
+    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer}, {}),
     EffectsModule.forRoot([ArtistsEffects, AlbumsEffects]),
     MatProgressSpinnerModule,
     FlexModule,
@@ -46,7 +51,10 @@ import {AlbumsEffects} from "./store/albums.effects";
     MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

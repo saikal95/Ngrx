@@ -23,7 +23,7 @@ const upload = multer({storage});
 
 
 
-router.post('/', upload.single('image'),async (req, res, next) => {
+router.post('/', upload.single('avatar'),async (req, res, next) => {
 
   try {
 
@@ -47,7 +47,9 @@ router.post('/', upload.single('image'),async (req, res, next) => {
     user.generateToken();
 
     await user.save();
+    console.log(user);
     return res.send({message: 'New user is created with following id : !', user: {id: user.id}});
+
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {
       return res.status(400).send(error);
