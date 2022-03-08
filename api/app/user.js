@@ -46,7 +46,10 @@ router.post('/', upload.single('avatar'),async (req, res, next) => {
 
     user.generateToken();
 
+    console.log(user);
     await user.save();
+
+
 
     return res.send({message: 'New user is created with following id : !', user: {id: user.id}});
 

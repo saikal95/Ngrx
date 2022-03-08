@@ -27,6 +27,10 @@ import { RegisterComponent } from './register/register.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
+import {usersReducer} from "./store/users.reducer";
+import {UsersEffects} from "./store/users.effects";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {ValidateIdenticalDirective} from "./register/validate-identical.directive";
 
 @NgModule({
   declarations: [
@@ -35,15 +39,16 @@ import {MatInputModule} from "@angular/material/input";
     LayoutComponent,
     ImagePipe,
     AlbumsComponent,
-    RegisterComponent
+    RegisterComponent,
+    ValidateIdenticalDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer}, {}),
-    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects]),
+    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer}, {}),
+    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects]),
     MatProgressSpinnerModule,
     FlexModule,
     MatDividerModule,
@@ -54,7 +59,8 @@ import {MatInputModule} from "@angular/material/input";
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

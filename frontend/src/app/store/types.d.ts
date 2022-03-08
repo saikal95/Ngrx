@@ -1,5 +1,7 @@
 import { Artist } from '../models/artist.model';
 import {Album} from "../models/album.model";
+import {RegisterError, User} from "../models/user.model";
+import {UsersService} from "../services/users.service";
 
 export type ArtistsState = {
   artists: Artist[],
@@ -20,3 +22,17 @@ export type AlbumsState = {
 export type AppStateAlbum = {
   albums: AlbumsState
 }
+
+export type UsersState = {
+  user: null | User,
+  registerLoading: boolean,
+  registerError: null | RegisterError
+
+}
+
+export type AppStateUser = {
+  users: UsersState
+}
+
+
+
