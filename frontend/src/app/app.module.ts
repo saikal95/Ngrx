@@ -31,6 +31,7 @@ import {usersReducer} from "./store/users.reducer";
 import {UsersEffects} from "./store/users.effects";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ValidateIdenticalDirective} from "./register/validate-identical.directive";
+import {FileInputComponent} from "../../ui/file-input/file-input.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {ValidateIdenticalDirective} from "./register/validate-identical.directiv
     ImagePipe,
     AlbumsComponent,
     RegisterComponent,
-    ValidateIdenticalDirective
+    ValidateIdenticalDirective,
+    FileInputComponent
   ],
   imports: [
     BrowserModule,

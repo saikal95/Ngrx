@@ -12,7 +12,7 @@ export interface User{
 export interface RegisterUserData {
   email: string,
   password: string,
-  avatar?: string,
+  avatar: File | null,
   displayName: string,
 
 }
