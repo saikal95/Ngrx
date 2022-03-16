@@ -19,7 +19,7 @@ export class UsersService {
    if(userData.avatar){
      formData.append('avatar', userData.avatar);
    }
-    console.log(userData);
+
     return this.http.post<User>(environment.apiUrl + '/user', formData);
   }
 }
