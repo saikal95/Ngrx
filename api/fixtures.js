@@ -3,6 +3,8 @@ const config = require("./config");
 const Artist = require("./models/Artist");
 const Album = require("./models/Album");
 const Track = require("./models/Track");
+const User = require("./models/User");
+const { nanoid } = require('nanoid');
 
 const run = async () => {
   await mongoose.connect(config.mongo.db, config.mongo.options);
@@ -12,6 +14,22 @@ const run = async () => {
   for (const coll of collections) {
     await mongoose.connection.db.dropCollection(coll.name);
   }
+
+  await User.create({
+    email:'sircle98@mail.ru',
+    password: '1234789',
+    avatar: 'user.png',
+    displayName: 'Saiko',
+    token: nanoid(),
+    role: 'user',
+  }, {
+    email:'admin@shop.com',
+    password: '12347810',
+    avatar: 'admin.jpeg',
+    displayName: 'John-admn',
+    token: nanoid(),
+    role:'admin',
+  })
 
   const [MarylinManson, Iggy, Ozzie] = await Artist.create({
     title: 'MarylinManson',
@@ -57,7 +75,18 @@ const run = async () => {
       duration: '3:16'
     },
     {
+      title: "Wow",
+      album: antichristSuperstar,
+      duration: "4:00"
+
+    },
+    {
       title: 'Tainted love',
+      album: paleEmperor,
+      duration: "3:17",
+    },
+    {
+      title: 'Killing strangers',
       album: paleEmperor,
       duration: "3:17",
     },
@@ -65,6 +94,11 @@ const run = async () => {
       title: 'Black Widow',
       album: digitalDistortion,
       duration: "3:18"
+    },
+    {
+      title: 'Azillion',
+      album: digitalDistortion,
+      duration: "3:15"
     },
     {
       title: 'Blizzard of OZZ',
