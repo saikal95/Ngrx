@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
@@ -22,7 +22,6 @@ export class LoginComponent {
   }
   onSubmit() {
     const userData: LoginUserData = this.form.value;
-    console.log(userData);
     this.store.dispatch(loginUserRequest({userData}))
   }
 }

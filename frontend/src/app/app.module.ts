@@ -37,6 +37,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { CenterCardComponent } from './ui/center-card/center-card.component';
 import {MatListModule} from "@angular/material/list";
 import {localStorageSync} from "ngrx-store-localstorage";
+import { TrackHistoryComponent } from './track-history/track-history.component';
+import { TracksComponent } from './tracks/tracks.component';
+import {tracksReducer} from "./store/tracks.reducer";
+import {TracksEffects} from "./store/tracks.effects";
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -58,15 +62,17 @@ const metaReducers : MetaReducer[] = [localStorageSyncReducer];
     ValidateIdenticalDirective,
     FileInputComponent,
     LoginComponent,
-    CenterCardComponent
+    CenterCardComponent,
+    TrackHistoryComponent,
+    TracksComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer}, {metaReducers}),
-    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects]),
+    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer, tracks: tracksReducer}, {metaReducers}),
+    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects, TracksEffects]),
     MatProgressSpinnerModule,
     FlexModule,
     MatDividerModule,

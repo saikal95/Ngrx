@@ -66,28 +66,25 @@ router.post('/', upload.single('avatar'),async (req, res, next) => {
 
 router.post('/sessions', async (req, res) => {
 
-  // const user = await User.findOne({email: req.body.email});
-  // console.log(user);
-  // if (!user) {
-  //   return res.status(400).send({error: 'Email not found'});
-  // }
-  //
-  // const isMatch = await user.checkPassword(req.body.password);
-  //
-  // if (!isMatch) {
-  //   return res.status(400).send({error: 'Password is wrong'});
-  // }
-  //
-  // user.generateToken();
-  //
-  // await user.save();
+  const user = await User.findOne({email: req.body.email});
+  console.log(user);
+  if (!user) {
+    return res.status(400).send({error: 'Email not found'});
+  }
+
+  const isMatch = await user.checkPassword(req.body.password);
+
+  if (!isMatch) {
+    return res.status(400).send({error: 'Password is wrong'});
+  }
+
+  user.generateToken();
+
+  await user.save();
 
 
-  const users = User.find();
 
-  console.log('hjjdfhjkhfdhk');
-
-  return res.send({message: 'Username and password correct!', user: {token: user.token}});
+  return res.send(user);
 });
 
 router.delete('/sessions', async (req, res, next) => {

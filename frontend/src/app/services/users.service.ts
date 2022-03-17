@@ -26,11 +26,11 @@ export class UsersService {
 
   login(userData: LoginUserData) {
     console.log(userData)
-    return this.http.post<User>(env.apiUrl + '/users/sessions', userData);
+    return this.http.post<User>(env.apiUrl + '/user/sessions', userData);
   }
 
   logout(token: string) {
-    return this.http.delete(env.apiUrl + '/users/sessions', {
+    return this.http.delete(env.apiUrl + '/user/sessions', {
       headers: new HttpHeaders({'Authorization': token})
     });
   }

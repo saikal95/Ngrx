@@ -19,6 +19,12 @@
         mat-card-image
       />
     </mat-card>
+    <mat-card-actions>
+      <a
+        [routerLink]="['tracks', album.id]"
+        mat-button
+      > See Tracks</a>
+    </mat-card-actions>
   </div>
 </div>
 
