@@ -18,6 +18,9 @@ export class RegisterComponent implements AfterViewInit , OnDestroy{
   error: Observable<null | RegisterError>;
   errorSub!: Subscription;
   loading: Observable<boolean>
+
+
+
   constructor(private store: Store<AppState>) {
     this.error = store.select(state => state.users.registerError);
     this.loading = store.select(state => state.users.registerLoading);
@@ -36,6 +39,7 @@ export class RegisterComponent implements AfterViewInit , OnDestroy{
 
   onSubmit() {
      this.store.dispatch(registerUserRequest({userData: this.form.value}));
+    console.log(this.form.value);
 
   }
 

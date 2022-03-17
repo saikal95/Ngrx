@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
+import {ActionReducer, MetaReducer, StoreModule} from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {artistsReducer} from "./store/artists.reducer";
 import {HttpClientModule} from "@angular/common/http";
@@ -35,6 +35,17 @@ import {FileInputComponent} from "./ui/file-input/file-input.component";
 import {MatMenuModule} from "@angular/material/menu";
 import { LoginComponent } from './pages/login/login.component';
 import { CenterCardComponent } from './ui/center-card/center-card.component';
+import {MatListModule} from "@angular/material/list";
+import {localStorageSync} from "ngrx-store-localstorage";
+
+const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
+  return localStorageSync({
+    keys: [{users: ['user']}],
+    rehydrate: true
+  })(reducer);
+}
+
+const metaReducers : MetaReducer[] = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
@@ -49,27 +60,28 @@ import { CenterCardComponent } from './ui/center-card/center-card.component';
     LoginComponent,
     CenterCardComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer}, {}),
-        EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects]),
-        MatProgressSpinnerModule,
-        FlexModule,
-        MatDividerModule,
-        MatCardModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatFormFieldModule,
-        FormsModule,
-        MatInputModule,
-        MatSnackBarModule,
-        MatMenuModule,
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer}, {metaReducers}),
+    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects]),
+    MatProgressSpinnerModule,
+    FlexModule,
+    MatDividerModule,
+    MatCardModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    MatListModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
