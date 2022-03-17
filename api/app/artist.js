@@ -1,6 +1,7 @@
 const express = require('express');
 const Artist = require('../models/Artist');
-const Album = require("../models/Album");
+const auth = require("../middleware/auth")
+const permit = require("../middleware/permit")
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", auth, permit, async (req, res, next) => {
   try {
     const artistData = req.body;
     const artist = new Artist(artistData);

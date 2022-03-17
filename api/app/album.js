@@ -4,7 +4,8 @@ const path = require('path');
 const { nanoid } = require('nanoid');
 const config = require('../config');
 const Album = require("../models/Album");
-const Artist = require("../models/Artist");
+const auth = require("../middleware/auth")
+const permit = require("../middleware/permit")
 
 const router = express.Router();
 
@@ -61,7 +62,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', upload.single('image'), async (req, res, next) => {
+router.post('/',auth, permit,  upload.single('image'), async (req, res, next) => {
   try {
     if (!req.body.title || !req.body.artist) {
       return res.status(400).send({message: 'Post is not possible now, you should provide title and artist at least'});
