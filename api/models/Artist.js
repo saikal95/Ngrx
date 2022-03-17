@@ -10,7 +10,7 @@ const ArtistSchema = new mongoose.Schema({
   information: String
 })
 
-const Category = mongoose.model('Artist', ArtistSchema);
+const Product = mongoose.model('Artist', ArtistSchema);
 
 
-module.exports = Category;
+module.exports = Product;

@@ -1,7 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center">
-  <mat-card class="register-form">
-    <mat-card-title>Register</mat-card-title>
-    <mat-card-content>
+  <app-center-card title="Register">
       <form #f="ngForm" fxLayout="column" autocomplete="off" (ngSubmit)="onSubmit()"
             [appIdentical]="['password','passwordRep']">
         <mat-form-field appearance="outline">
@@ -62,7 +59,5 @@
           REGISTER
         </button>
       </form>
-    </mat-card-content>
-  </mat-card>
-</div>
+  </app-center-card>
 

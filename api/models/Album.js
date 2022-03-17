@@ -18,7 +18,7 @@ const AlbumSchema = new Schema({
   image: String
 });
 
-const Product = mongoose.model('Album', AlbumSchema);
+const Album = mongoose.model('Album', AlbumSchema);
 
-module.exports = Product;
+module.exports = Album;
 

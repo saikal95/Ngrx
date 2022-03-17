@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {RegisterUserData, User} from "../models/user.model";
-import {environment} from "../../environments/environment";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {LoginUserData, RegisterUserData, User} from "../models/user.model";
+import {environment as env} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,20 @@ export class UsersService {
      formData.append('avatar', userData.avatar);
    }
 
-    return this.http.post<User>(environment.apiUrl + '/user', formData);
+    return this.http.post<User>(env.apiUrl + '/user', formData);
   }
+
+
+  login(userData: LoginUserData) {
+    return this.http.post<User>(env.apiUrl + '/users/sessions', userData);
+  }
+
+  logout(token: string) {
+    return this.http.delete(env.apiUrl + '/users/sessions', {
+      headers: new HttpHeaders({'Authorization': token})
+    });
+  }
+
+
+
 }

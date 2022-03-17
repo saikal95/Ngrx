@@ -31,7 +31,10 @@ import {usersReducer} from "./store/users.reducer";
 import {UsersEffects} from "./store/users.effects";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {ValidateIdenticalDirective} from "./register/validate-identical.directive";
-import {FileInputComponent} from "../../ui/file-input/file-input.component";
+import {FileInputComponent} from "./ui/file-input/file-input.component";
+import {MatMenuModule} from "@angular/material/menu";
+import { LoginComponent } from './pages/login/login.component';
+import { CenterCardComponent } from './ui/center-card/center-card.component';
 
 @NgModule({
   declarations: [
@@ -42,28 +45,31 @@ import {FileInputComponent} from "../../ui/file-input/file-input.component";
     AlbumsComponent,
     RegisterComponent,
     ValidateIdenticalDirective,
-    FileInputComponent
+    FileInputComponent,
+    LoginComponent,
+    CenterCardComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer}, {}),
-    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects]),
-    MatProgressSpinnerModule,
-    FlexModule,
-    MatDividerModule,
-    MatCardModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    MatSnackBarModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer}, {}),
+        EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects]),
+        MatProgressSpinnerModule,
+        FlexModule,
+        MatDividerModule,
+        MatCardModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        MatSnackBarModule,
+        MatMenuModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

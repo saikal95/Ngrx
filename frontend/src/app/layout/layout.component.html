@@ -1,9 +1,10 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav-content >
-    <mat-toolbar color="primary"fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
       <div ><a routerLink="/">Artists</a></div>
-      <nav>
+      <nav *ngIf="!(user | async) else userMenu">
         <a mat-button routerLink="/register">REGISTER</a>
+        <a mat-button routerLink="/login">SIGN IN</a>
       </nav>
     </mat-toolbar>
 
@@ -12,3 +13,16 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+<ng-template #userMenu>
+  <nav>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </nav>
+</ng-template>
