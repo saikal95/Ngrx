@@ -1,7 +1,13 @@
 import {createReducer, on} from "@ngrx/store";
 import {TracksHistoryState} from "./types";
-import {sendTrackHistoryFailure, sendTrackHistoryRequest, sendTrackHistorySuccess} from "./trackHistory.actions";
+import {
+  fetchTrackHistoryRequest, fetchTrackHistorySuccess,
+  sendTrackHistoryFailure,
+  sendTrackHistoryRequest,
+  sendTrackHistorySuccess
+} from "./trackHistory.actions";
 import {Track} from "../models/track.model";
+import {fetchAlbumsFailure, fetchAlbumsRequest, fetchAlbumsSuccess} from "./albums.actions";
 
 const  initialState : TracksHistoryState = {
   trackHistory: [],
@@ -13,10 +19,9 @@ const  initialState : TracksHistoryState = {
 export const trackHistoryReducer = createReducer(
   initialState,
   on(sendTrackHistoryRequest, state=> ({...state, fetchLoading: true, fetchError: null})),
-  on(sendTrackHistorySuccess, (state, {trackHistory}) => ({
+  on(sendTrackHistorySuccess, (state) => ({
     ...state,
     fetchLoading: false,
-    trackHistory
   })),
   on(sendTrackHistoryFailure, (state, { error })=> ({
       ...state,
@@ -25,6 +30,17 @@ export const trackHistoryReducer = createReducer(
     })
   ),
 
+  on(fetchTrackHistoryRequest, state => ({...state, fetchLoading: true})),
+  on(fetchTrackHistorySuccess, (state, {trackHistory}) => ({
+    ...state,
+    fetchLoading: false,
+    trackHistory
+  })),
+  on(fetchAlbumsFailure, (state, {error}) => ({
+    ...state,
+    fetchLoading: false,
+    fetchError: error,
+  })),
 
 
 )

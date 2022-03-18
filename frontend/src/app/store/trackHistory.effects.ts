@@ -1,15 +1,20 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {UsersService} from "../services/users.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HelpersService} from "../services/helpers.service";
 import {Store} from "@ngrx/store";
 import {AppState} from "./types";
-import {loginUserFailure, loginUserRequest, loginUserSuccess} from "./users.actions";
-import {mergeMap, tap} from "rxjs";
+import {catchError, mergeMap, of, tap} from "rxjs";
 import {map} from "rxjs/operators";
-import {sendTrackHistoryFailure, sendTrackHistoryRequest, sendTrackHistorySuccess} from "./trackHistory.actions";
+import {
+  fetchTrackHistoryFailure,
+  fetchTrackHistoryRequest,
+  fetchTrackHistorySuccess,
+  sendTrackHistoryFailure,
+  sendTrackHistoryRequest,
+  sendTrackHistorySuccess
+} from "./trackHistory.actions";
 import {TrackHistoryService} from "../services/track-history.service";
 
 
@@ -27,19 +32,30 @@ export class TrackHistoryEffects {
   ) {}
 
 
+  sendTrackHistory = createEffect(() => this.actions.pipe(
+    ofType(sendTrackHistoryRequest),
+    mergeMap(({trackHistory})=> this.trackHistoryService.sendTrackHistory(trackHistory).pipe(
+      map(() => sendTrackHistorySuccess()),
+      tap(()=> {
+        this.helpers.catchServerError(sendTrackHistoryFailure)
+      })
+    ))
+  ))
 
-  //
-  // sendTrackHistory = createEffect(() => this.actions.pipe(
-  //   ofType(sendTrackHistoryRequest),
-  //   mergeMap(({trackHistoryData})=> this.trackHistoryService.sendTrackHistory(trackHistoryData).pipe(
-  //     map(trackHistory => sendTrackHistorySuccess({trackHistory})),
-  //     tap(()=> {
-  //       this.helpers.catchServerError(sendTrackHistoryFailure)
-  //     })
-  //   ))
-  //
-  //
-  // ))
+
+  fetchTrackHistory = createEffect(() => this.actions.pipe(
+    ofType(fetchTrackHistoryRequest),
+    mergeMap(()=> this.trackHistoryService.getTrackHistory().pipe(
+      map((trackHistory) => fetchTrackHistorySuccess({trackHistory}),
+        catchError(()=> of(fetchTrackHistoryFailure({
+          error: 'Something went wrong',
+        })))
+      ))
+
+    )))
+
+
+
 
 
 

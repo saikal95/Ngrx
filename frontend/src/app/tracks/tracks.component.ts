@@ -42,12 +42,11 @@ export class TracksComponent implements OnInit , OnDestroy{
   }
 
   addToTrackH(id: string) {
-    const trackHistoryData = {
+    const trackHistory = {
       user: this.userId,
       track: id,
     }
-    this.store.dispatch(sendTrackHistoryRequest({trackHistoryData}))
-    console.log(trackHistoryData);
+    this.store.dispatch(sendTrackHistoryRequest({trackHistory}))
   }
 
   ngOnDestroy() {

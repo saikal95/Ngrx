@@ -1,6 +1,5 @@
 export class TrackHistory {
   constructor(
-    public _id: string,
     public user: string,
     public track: string,
   ) {}
@@ -8,10 +7,13 @@ export class TrackHistory {
 
 
 
-export interface TrackHistoryData {
-  // _id: string;
-  user: string;
-  track: string,
+export class TrackHistoryData {
+  constructor(
+     public _id: string,
+    public user: string,
+    public track: string,
+  ) {}
+
 }
 
 

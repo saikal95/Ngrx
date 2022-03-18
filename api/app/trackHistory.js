@@ -36,6 +36,7 @@ router.post('/', auth, async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const trackHistory = await TrackHistory.find();
+    console.log(trackHistory);
     return res.send(trackHistory);
   } catch(e) {
     next(e);

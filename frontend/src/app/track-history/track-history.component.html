@@ -1,24 +1,24 @@
-<div fxLayout="row" fxLayoutAlign="space-between flex-start">
-</div>
-<mat-label> Songs from the album </mat-label>
-<div class="error" *ngIf="error | async">
-  {{ error | async }}
-</div>
-<div fxLayout="row wrap" fxLayoutGap="16px grid">
-  <div
-    fxFlex.xs="100%"
-    fxFlex.sm="50%"
-    fxFlex.lt-lg="33%"
-    fxFlex="25%"
-    *ngFor="let track of tracks | async"
-  >
-    <mat-card>
-      <mat-card-title>{{ track.title }}</mat-card-title>
-      <mat-card-title>{{ track.duration }}</mat-card-title>
-      <button mat-button color="primary">Add to History</button>
-    </mat-card>
-  </div>
-</div>
+<!--<div fxLayout="row" fxLayoutAlign="space-between flex-start">-->
+<!--</div>-->
+<!--<mat-label> Songs from the album </mat-label>-->
+<!--<div class="error" *ngIf="error | async">-->
+<!--  {{ error | async }}-->
+<!--</div>-->
+<!--<div fxLayout="row wrap" fxLayoutGap="16px grid">-->
+<!--  <div-->
+<!--    fxFlex.xs="100%"-->
+<!--    fxFlex.sm="50%"-->
+<!--    fxFlex.lt-lg="33%"-->
+<!--    fxFlex="25%"-->
+<!--    *ngFor="let track of tracks | async"-->
+<!--  >-->
+<!--    <mat-card>-->
+<!--      <mat-card-title>{{ track.title }}</mat-card-title>-->
+<!--      <mat-card-title>{{ track.duration }}</mat-card-title>-->
+<!--      <button mat-button color="primary">Add to History</button>-->
+<!--    </mat-card>-->
+<!--  </div>-->
+<!--</div>-->
 
 
-<div>itsme</div>
+<!--<div>itsme</div>-->
