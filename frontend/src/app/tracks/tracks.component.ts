@@ -22,6 +22,7 @@ export class TracksComponent implements OnInit , OnDestroy{
   loading: Observable<boolean>
   error: Observable<null | string>
   userId: any;
+  tokenId: any
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.tracks = store.select(state => state.tracks.tracks);
@@ -31,6 +32,8 @@ export class TracksComponent implements OnInit , OnDestroy{
     this.user = store.select(state=> state.users.user);
     this.userSub = this.user.subscribe(user=> {
        this.userId = user?._id
+       this.tokenId = user?.token
+
     })
   }
 
@@ -46,7 +49,9 @@ export class TracksComponent implements OnInit , OnDestroy{
       user: this.userId,
       track: id,
     }
-    this.store.dispatch(sendTrackHistoryRequest({trackHistory}))
+    console.log(trackHistory);
+    this.store.dispatch(sendTrackHistoryRequest({token: this.tokenId, trackHistory}))
+
   }
 
   ngOnDestroy() {

@@ -2,7 +2,7 @@ import {createAction, props} from "@ngrx/store";
 import {TrackHistory, TrackHistoryData} from "../models/trackHistory.model";
 
 export const sendTrackHistoryRequest = createAction('[TrackHistory] Register Request',
-  props<{trackHistory: TrackHistory}>())
+  props<{trackHistory: TrackHistory, token: string}>())
 
 export const sendTrackHistorySuccess = createAction('[TrackHistory] Register Success');
 

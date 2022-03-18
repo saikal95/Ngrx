@@ -6,6 +6,7 @@ import {AppState} from "../store/types";
 import {ActivatedRoute} from "@angular/router";
 import {fetchTracksRequest} from "../store/tracks.actions";
 import {TrackHistory} from "../models/trackHistory.model";
+import {fetchTrackHistoryRequest} from "../store/trackHistory.actions";
 
 @Component({
   selector: 'app-track-history',
@@ -27,8 +28,7 @@ export class TrackHistoryComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const trackId = this.route.snapshot.params['id'];
-    // this.store.dispatch(fetchTracksRequest({id: albumId}));
+    this.store.dispatch(fetchTrackHistoryRequest());
   }
 
 }

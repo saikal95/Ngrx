@@ -35,7 +35,17 @@ router.post('/', auth, async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const trackHistory = await TrackHistory.find();
+    const query = {};
+
+    if(req.query.track){
+      query.track = req.query.track
+    }
+
+    const trackHistory = await TrackHistory.find(query).populate('track', 'title');
+
+
+
+
     console.log(trackHistory);
     return res.send(trackHistory);
   } catch(e) {

@@ -34,7 +34,7 @@ export class TrackHistoryEffects {
 
   sendTrackHistory = createEffect(() => this.actions.pipe(
     ofType(sendTrackHistoryRequest),
-    mergeMap(({trackHistory})=> this.trackHistoryService.sendTrackHistory(trackHistory).pipe(
+    mergeMap(({trackHistory, token})=> this.trackHistoryService.sendTrackHistory(trackHistory, token).pipe(
       map(() => sendTrackHistorySuccess()),
       tap(()=> {
         this.helpers.catchServerError(sendTrackHistoryFailure)
