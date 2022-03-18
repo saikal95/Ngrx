@@ -15,6 +15,7 @@
     <mat-card>
       <mat-card-title>{{ track.title }}</mat-card-title>
       <mat-card-title>{{ track.duration }}</mat-card-title>
+      <button mat-button color="primary" (click)="addToTrackH(track._id)">Add to History</button>
     </mat-card>
   </div>
 </div>

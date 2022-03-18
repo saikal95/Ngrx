@@ -52,7 +52,7 @@ router.post('/', upload.single('avatar'),async (req, res, next) => {
 
 
 
-    return res.send({message: 'New user is created with following id : !', user: {user}});
+    return res.send(user);
 
   } catch (error) {
     if (error instanceof mongoose.Error.ValidationError) {

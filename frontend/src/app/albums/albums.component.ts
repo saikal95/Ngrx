@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
-import {AppStateAlbum} from "../store/types";
+import {AppState} from "../store/types";
 import {Album} from "../models/album.model";
 import {fetchAlbumsRequest} from "../store/albums.actions";
 import {ActivatedRoute} from "@angular/router";
@@ -16,7 +16,7 @@ export class AlbumsComponent implements OnInit {
   loading: Observable<boolean>
   error: Observable<null | string>
 
-  constructor(private store: Store<AppStateAlbum>, private route: ActivatedRoute) {
+  constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.albums = store.select(state => state.albums.albums);
     this.loading = store.select(state => state.albums.fetchLoading);
     this.error = store.select(state => state.albums.fetchError);

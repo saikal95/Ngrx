@@ -41,6 +41,8 @@ import { TrackHistoryComponent } from './track-history/track-history.component';
 import { TracksComponent } from './tracks/tracks.component';
 import {tracksReducer} from "./store/tracks.reducer";
 import {TracksEffects} from "./store/tracks.effects";
+import {trackHistoryReducer} from "./store/trackHistory.reducer";
+import {TrackHistoryEffects} from "./store/trackHistory.effects";
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -71,8 +73,8 @@ const metaReducers : MetaReducer[] = [localStorageSyncReducer];
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer, tracks: tracksReducer}, {metaReducers}),
-    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects, TracksEffects]),
+    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer, tracks: tracksReducer, trackHistory: trackHistoryReducer}, {metaReducers}),
+    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects, TracksEffects, TrackHistoryEffects]),
     MatProgressSpinnerModule,
     FlexModule,
     MatDividerModule,

@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs";
+import {Track} from "../models/track.model";
+import {Store} from "@ngrx/store";
+import {AppState} from "../store/types";
+import {ActivatedRoute} from "@angular/router";
+import {fetchTracksRequest} from "../store/tracks.actions";
+import {TrackHistory} from "../models/trackHistory.model";
 
 @Component({
   selector: 'app-track-history',
@@ -7,9 +14,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrackHistoryComponent implements OnInit {
 
-  constructor() { }
+  trackHistory: Observable<TrackHistory[]>
+  loading: Observable<boolean>
+  error: Observable<null | string>
+
+  constructor(private store: Store<AppState>, private route: ActivatedRoute) {
+    this.trackHistory = store.select(state => state.trackHistory.trackHistory);
+    this.loading = store.select(state => state.tracks.fetchLoading);
+    this.error = store.select(state => state.tracks.fetchError);
+  }
+
+
 
   ngOnInit(): void {
+    const trackId = this.route.snapshot.params['id'];
+    // this.store.dispatch(fetchTracksRequest({id: albumId}));
   }
 
 }

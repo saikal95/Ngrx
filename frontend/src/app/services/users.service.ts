@@ -25,7 +25,6 @@ export class UsersService {
 
 
   login(userData: LoginUserData) {
-    console.log(userData)
     return this.http.post<User>(env.apiUrl + '/user/sessions', userData);
   }
 

@@ -2,6 +2,7 @@ import { Artist } from '../models/artist.model';
 import {Album} from "../models/album.model";
 import {LoginError, RegisterError, User} from "../models/user.model";
 import {Track} from "../models/track.model";
+import {TrackHistory} from "../models/trackHistory.model";
 
 
 export type ArtistsState = {
@@ -14,6 +15,8 @@ export type AppState = {
   artists: ArtistsState
   users: UsersState
   tracks: TracksState
+  trackHistory: TracksHistoryState
+  albums: AlbumsState
 }
 
 export type AlbumsState = {
@@ -25,14 +28,17 @@ export type AlbumsState = {
 
 export type TracksState = {
   tracks: Track[],
+  oneTrack: Track | null,
   fetchLoading: boolean,
   fetchError: null | string,
 };
 
+export type TracksHistoryState = {
+  trackHistory: TrackHistory[],
+  fetchLoading: boolean,
+  fetchError: null | string,
+};
 
-export type AppStateAlbum = {
-  albums: AlbumsState
-}
 
 export type UsersState = {
   user: null | User,

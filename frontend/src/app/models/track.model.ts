@@ -1,6 +1,6 @@
 export class Track {
   constructor(
-    public id: string,
+    public _id: string,
     public title: string,
     public album: string,
     public duration: string,

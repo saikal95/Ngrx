@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'login',component: LoginComponent},
   {path: 'trackHistory', component: TrackHistoryComponent},
   {path: ':id', component: AlbumsComponent},
-  {path: ':id/tracks/:id', component: TracksComponent}
+  {path: ':id/tracks/:id', component: TracksComponent},
+  {path: ':id/tracks/:id/trackH/:id', component: TrackHistoryComponent}
 ];
 
 @NgModule({

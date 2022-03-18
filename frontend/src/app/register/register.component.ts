@@ -39,7 +39,6 @@ export class RegisterComponent implements AfterViewInit , OnDestroy{
 
   onSubmit() {
      this.store.dispatch(registerUserRequest({userData: this.form.value}));
-    console.log(this.form.value);
 
   }
 
