@@ -6,8 +6,9 @@ import {ActivatedRoute} from "@angular/router";
 import { Track} from "../models/track.model";
 import {fetchTracksRequest} from "../store/tracks.actions";
 import {sendTrackHistoryRequest} from "../store/trackHistory.actions";
-import {TrackHistoryData} from "../models/trackHistory.model";
+import {TrackHistory, TrackHistoryData} from "../models/trackHistory.model";
 import {User} from "../models/user.model";
+import {albumsReducer} from "../store/albums.reducer";
 
 @Component({
   selector: 'app-tracks',
@@ -17,7 +18,7 @@ import {User} from "../models/user.model";
 export class TracksComponent implements OnInit , OnDestroy{
   tracks: Observable<Track[]>
   user: Observable<User | null>
-  trackHistoryData: Observable<TrackHistoryData[]>
+
   userSub: Subscription
   loading: Observable<boolean>
   error: Observable<null | string>
@@ -28,7 +29,6 @@ export class TracksComponent implements OnInit , OnDestroy{
     this.tracks = store.select(state => state.tracks.tracks);
     this.loading = store.select(state => state.tracks.fetchLoading);
     this.error = store.select(state => state.tracks.fetchError);
-    this.trackHistoryData = store.select(state => state.trackHistory.trackHistory);
     this.user = store.select(state=> state.users.user);
     this.userSub = this.user.subscribe(user=> {
        this.userId = user?._id
@@ -45,12 +45,12 @@ export class TracksComponent implements OnInit , OnDestroy{
   }
 
   addToTrackH(id: string) {
-    const trackHistory = {
+    const trackHistory: TrackHistoryData = {
       user: this.userId,
       track: id,
     }
     console.log(trackHistory);
-    this.store.dispatch(sendTrackHistoryRequest({token: this.tokenId, trackHistory}))
+    this.store.dispatch(sendTrackHistoryRequest({trackHistoryData: trackHistory, token: this.tokenId}))
 
   }
 

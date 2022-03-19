@@ -12,17 +12,14 @@
     fxFlex="25%"
     *ngFor="let track of trackHistory | async"
   >
-    <div *ngFor="let oneItem of track | keyvalue">
-      <div *ngFor="let one of oneItem.value | keyvalue">
-      {{one.value}}
+    <div *ngFor="let oneItem of track| keyvalue">
+      <div *ngFor="let one of oneItem.value | keyvalue let i = index " >
+        <div *ngIf="i === 1 ">
+          {{one.value}}
+        </div>
       </div>
     </div>
-
-<!--    <mat-card>-->
-<!--&lt;!&ndash;      <mat-card-title>{{ track.user }}</mat-card-title>&ndash;&gt;-->
-<!--      <mat-card-title>{{ track.track}}</mat-card-title>-->
-<!--    </mat-card>-->
-
+    <div>{{ track.dateTime}}</div>
   </mat-card>
 
 </div>

@@ -1,22 +1,24 @@
-import {Artist} from "./artist.model";
 
 export class TrackHistory {
   constructor(
+    public id: string,
     public user: string,
     public track: string,
-    // public dateTime: string,
+    public dateTime: string,
   ) {}
 }
 
+export interface TrackHistoryData {
+  user: string,
+  track: string,
+}
 
 
-export class TrackHistoryData {
-  constructor(
-     public _id: string,
-    public user: string,
-    public track: string,
-  ) {}
-
+export interface ApiTrackHistory {
+   _id: string,
+  user: string,
+  track:  string,
+  dateTime: string
 }
 
 

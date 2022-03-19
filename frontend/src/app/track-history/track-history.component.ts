@@ -28,6 +28,7 @@ export class TrackHistoryComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.trackHistory);
     this.store.dispatch(fetchTrackHistoryRequest());
   }
 
