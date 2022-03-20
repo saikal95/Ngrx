@@ -8,6 +8,21 @@ export class Album {
   ) {}
 }
 
+
+
+export interface AlbumData {
+  [key: string]: any,
+  title: string,
+  artist: string,
+  year: number,
+  image: File | null,
+}
+
+
+
+
+
+
 export interface ApiAlbumData {
   _id: string,
   title: string,
@@ -16,4 +31,6 @@ export interface ApiAlbumData {
   image: string,
 
 }
+
+
 

@@ -47,6 +47,7 @@ import {AuthInterceptor} from "./auth.interceptor";
 import { AddArtistComponent } from './add-artist/add-artist.component';
 import { AddAlbumComponent } from './add-album/add-album.component';
 import { AddTrackComponent } from './add-track/add-track.component';
+import {MatSelectModule} from "@angular/material/select";
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -80,7 +81,13 @@ const metaReducers : MetaReducer[] = [localStorageSyncReducer];
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({artists: artistsReducer, albums: albumsReducer, users: usersReducer, tracks: tracksReducer, trackHistory: trackHistoryReducer}, {metaReducers}),
+    StoreModule.forRoot({
+      artists: artistsReducer,
+      albums: albumsReducer,
+      users: usersReducer,
+      tracks: tracksReducer,
+      trackHistory: trackHistoryReducer
+    }, {metaReducers}),
     EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, UsersEffects, TracksEffects, TrackHistoryEffects]),
     MatProgressSpinnerModule,
     FlexModule,
@@ -96,6 +103,7 @@ const metaReducers : MetaReducer[] = [localStorageSyncReducer];
     MatSnackBarModule,
     MatMenuModule,
     MatListModule,
+    MatSelectModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

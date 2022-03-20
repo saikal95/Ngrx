@@ -12,7 +12,6 @@ export class Artist {
 export interface ArtistData {
   [key: string]: any;
   title: string;
-  price: number;
   image: File | null;
   information: string;
 }

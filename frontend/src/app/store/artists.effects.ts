@@ -1,8 +1,16 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {ArtistsService} from "../services/artists.service";
-import {fetchArtistsFailure, fetchArtistsRequest, fetchArtistsSuccess} from "./artists.actions";
-import {catchError, map, mergeMap, of} from "rxjs";
+import {
+  createArtistFailure,
+  createArtistRequest,
+  fetchArtistsFailure,
+  fetchArtistsRequest,
+  fetchArtistsSuccess
+} from "./artists.actions";
+import {catchError, map, mergeMap, of, tap} from "rxjs";
+import {createAlbumFailure, createAlbumRequest, createAlbumSuccess} from "./albums.actions";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class ArtistsEffects {
@@ -18,8 +26,21 @@ export class ArtistsEffects {
 
  ));
 
+
+  createArtist = createEffect(() => this.actions.pipe(
+    ofType(createArtistRequest ),
+    mergeMap(({artistData}) => this.artistsService.createArtist(artistData).pipe(
+      map(() => createAlbumSuccess ()),
+      tap(() => this.router.navigate(['/'])),
+      catchError(() => of(createArtistFailure({error: 'No artist'})))
+    ))
+  ));
+
+
+
   constructor(
     private actions: Actions,
     private artistsService: ArtistsService,
+    private router: Router
   ) {}
 }

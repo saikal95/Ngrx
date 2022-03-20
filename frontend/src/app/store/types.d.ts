@@ -9,6 +9,8 @@ export type ArtistsState = {
   artists: Artist[],
   fetchLoading: boolean,
   fetchError: null | string,
+  createLoading: boolean,
+  createError: null | string,
 };
 
 export type AppState = {
@@ -23,6 +25,8 @@ export type AlbumsState = {
   albums: Album[],
   fetchLoading: boolean,
   fetchError: null | string,
+  createLoading: boolean,
+  createError: null | string,
 };
 
 

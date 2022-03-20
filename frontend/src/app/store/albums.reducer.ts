@@ -1,12 +1,21 @@
 import {AlbumsState} from "./types";
 import {createReducer, on} from "@ngrx/store";
-import {fetchAlbumsFailure, fetchAlbumsRequest, fetchAlbumsSuccess} from "./albums.actions";
+import {
+  createAlbumFailure,
+  createAlbumRequest,
+  createAlbumSuccess,
+  fetchAlbumsFailure,
+  fetchAlbumsRequest,
+  fetchAlbumsSuccess
+} from "./albums.actions";
 
 
 const  initialState : AlbumsState = {
   albums: [],
   fetchLoading: false,
   fetchError: <null | string>null,
+  createLoading: false,
+  createError: null,
 }
 
 export const albumsReducer = createReducer(
@@ -23,4 +32,18 @@ export const albumsReducer = createReducer(
     fetchLoading: false,
     fetchError: error,
   })),
+  on(createAlbumRequest, state => ({...state, createLoading: true})),
+  on(createAlbumSuccess, state => ({...state, createLoading: false})),
+  on(createAlbumFailure, (state, {error}) => ({
+    ...state,
+    createLoading: false,
+    createError: error,
+  }))
+
+
+
+
+
+
+
 );
