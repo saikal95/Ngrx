@@ -8,11 +8,12 @@ const Trackhistoryschema = new Schema({
     ref: 'User',
     required: true
   },
-  track: {
-    type: Schema.Types.ObjectId,
-    ref: 'Track',
-    required: true
-  },
+    track: {
+      type: Schema.Types.ObjectId,
+      ref: 'Track',
+      required: true
+    },
+
   dateTime: {
     type: String,
     required: true

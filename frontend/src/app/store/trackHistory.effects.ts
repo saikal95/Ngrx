@@ -16,7 +16,7 @@ import {
   sendTrackHistorySuccess
 } from "./trackHistory.actions";
 import {TrackHistoryService} from "../services/track-history.service";
-import {logoutUser} from "./users.actions";
+
 
 
 @Injectable()
@@ -46,7 +46,7 @@ export class TrackHistoryEffects {
 
   fetchTrackHistory = createEffect(() => this.actions.pipe(
     ofType(fetchTrackHistoryRequest),
-    mergeMap(()=> this.trackHistoryService.getTrackHistory().pipe(
+    mergeMap(({id,token})=> this.trackHistoryService.getTrackHistory(id, token).pipe(
       map((trackHistory) => fetchTrackHistorySuccess({trackHistory}),
         catchError(()=> of(fetchTrackHistoryFailure({
           error: 'Something went wrong',

@@ -18,15 +18,19 @@ export class TrackHistoryService {
     })
   }
 
-  getTrackHistory(){
-    return this.http.get<ApiTrackHistory[]>(environment.apiUrl + '/trackHistory').pipe(
+  getTrackHistory(id: string, token: string){
+    return this.http.get<ApiTrackHistory[]>(environment.apiUrl + '/trackHistory', {
+      headers: new HttpHeaders({'Authorization': token})
+    }).pipe(
       map(response => {
         return response.map(trackHistoryData => {
           return new TrackHistory(
             trackHistoryData._id,
             trackHistoryData.user,
             trackHistoryData.track,
+            trackHistoryData.artist,
             trackHistoryData.dateTime,
+            trackHistoryData.token,
           );
         });
       })

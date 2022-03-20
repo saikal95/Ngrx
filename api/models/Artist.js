@@ -7,8 +7,13 @@ const ArtistSchema = new mongoose.Schema({
     unique: true
   },
   image: String,
-  information: String
-})
+  information: String,
+    is_published: boolean = false,
+}
+
+
+
+)
 
 const Product = mongoose.model('Artist', ArtistSchema);
 

@@ -6,12 +6,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {
   loginUserFailure,
   loginUserRequest,
-  loginUserSuccess, logoutUser, logoutUserRequest,
+  loginUserSuccess,
+  logoutUser,
+  logoutUserRequest,
   registerUserFailure,
   registerUserRequest,
   registerUserSuccess
 } from "./users.actions";
-import {mergeMap, tap, catchError, of, NEVER, withLatestFrom} from "rxjs";
+import {catchError, mergeMap, of, tap} from "rxjs";
 import {map} from "rxjs/operators";
 import {HttpErrorResponse} from "@angular/common/http";
 import {HelpersService} from "../services/helpers.service";
@@ -69,16 +71,12 @@ export class UsersEffects {
 
   logoutUser = createEffect(() => this.actions.pipe(
     ofType(logoutUserRequest),
-    withLatestFrom(this.store.select(state => state.users.user)),
-    mergeMap(([_, user]) => {
-      if (user) {
-        return this.usersService.logout(user.token).pipe(
+    mergeMap(() => {
+        return this.usersService.logout().pipe(
           map(() => logoutUser()),
           tap(() => this.helpers.openSnackbar('Logout successful'))
         );
-      }
 
-      return NEVER;
     }))
   )
 

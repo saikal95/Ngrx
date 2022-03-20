@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ActionReducer, MetaReducer, StoreModule} from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {artistsReducer} from "./store/artists.reducer";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { ArtistsComponent } from './artists/artists.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FlexModule} from "@angular/flex-layout";
@@ -43,6 +43,10 @@ import {tracksReducer} from "./store/tracks.reducer";
 import {TracksEffects} from "./store/tracks.effects";
 import {trackHistoryReducer} from "./store/trackHistory.reducer";
 import {TrackHistoryEffects} from "./store/trackHistory.effects";
+import {AuthInterceptor} from "./auth.interceptor";
+import { AddArtistComponent } from './add-artist/add-artist.component';
+import { AddAlbumComponent } from './add-album/add-album.component';
+import { AddTrackComponent } from './add-track/add-track.component';
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -66,7 +70,10 @@ const metaReducers : MetaReducer[] = [localStorageSyncReducer];
     LoginComponent,
     CenterCardComponent,
     TrackHistoryComponent,
-    TracksComponent
+    TracksComponent,
+    AddArtistComponent,
+    AddAlbumComponent,
+    AddTrackComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +97,9 @@ const metaReducers : MetaReducer[] = [localStorageSyncReducer];
     MatMenuModule,
     MatListModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,12 +3,11 @@ import {Observable, Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
 import {AppState} from "../store/types";
 import {ActivatedRoute} from "@angular/router";
-import { Track} from "../models/track.model";
+import {Track} from "../models/track.model";
 import {fetchTracksRequest} from "../store/tracks.actions";
 import {sendTrackHistoryRequest} from "../store/trackHistory.actions";
-import {TrackHistory, TrackHistoryData} from "../models/trackHistory.model";
+import {TrackHistoryData} from "../models/trackHistory.model";
 import {User} from "../models/user.model";
-import {albumsReducer} from "../store/albums.reducer";
 
 @Component({
   selector: 'app-tracks',
@@ -49,7 +48,7 @@ export class TracksComponent implements OnInit , OnDestroy{
       user: this.userId,
       track: id,
     }
-    console.log(trackHistory);
+
     this.store.dispatch(sendTrackHistoryRequest({trackHistoryData: trackHistory, token: this.tokenId}))
 
   }

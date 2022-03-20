@@ -10,7 +10,8 @@ export const sendTrackHistoryFailure = createAction('[TrackHistory] Register Fai
   props<{error: string}>())
 
 
-export const fetchTrackHistoryRequest = createAction('[TrackHistory] Fetch Request');
+export const fetchTrackHistoryRequest = createAction('[TrackHistory] Fetch Request',
+  props<{id: string, token: string}>());
 
 export const fetchTrackHistorySuccess = createAction(
   '[TrackHistory] Fetch Success',
