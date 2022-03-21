@@ -48,6 +48,7 @@ import { AddArtistComponent } from './add-artist/add-artist.component';
 import { AddAlbumComponent } from './add-album/add-album.component';
 import { AddTrackComponent } from './add-track/add-track.component';
 import {MatSelectModule} from "@angular/material/select";
+import {HasRolesDirective} from "./directives/has-roles.directive";
 
 const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -74,7 +75,8 @@ const metaReducers : MetaReducer[] = [localStorageSyncReducer];
     TracksComponent,
     AddArtistComponent,
     AddAlbumComponent,
-    AddTrackComponent
+    AddTrackComponent,
+    HasRolesDirective,
   ],
   imports: [
     BrowserModule,

@@ -62,7 +62,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/',auth, permit,  upload.single('image'), async (req, res, next) => {
+router.post('/',auth, upload.single('image'), async (req, res, next) => {
   try {
     if (!req.body.title || !req.body.artist) {
       return res.status(400).send({message: 'Post is not possible now, you should provide title and artist at least'});
@@ -73,17 +73,16 @@ router.post('/',auth, permit,  upload.single('image'), async (req, res, next) =>
       artist: req.body.artist,
       year: req.body.year,
       image: null,
+      is_published: false,
     };
 
     if (req.file) {
       albumData.image = req.file.filename;
     }
-
     const album = new Album(albumData);
 
     await album.save();
-
-    return res.send({message: 'Created new Album', id: album._id});
+    return res.send(album);
   } catch (e) {
     next(e);
   }

@@ -4,7 +4,7 @@ import {
   createAlbumFailure,
   createAlbumRequest,
   createAlbumSuccess,
-  fetchAlbumsFailure,
+  fetchAlbumsFailure, fetchAlbumsForTrFailure, fetchAlbumsForTrRequest, fetchAlbumsForTrSuccess,
   fetchAlbumsRequest,
   fetchAlbumsSuccess
 } from "./albums.actions";
@@ -38,7 +38,18 @@ export const albumsReducer = createReducer(
     ...state,
     createLoading: false,
     createError: error,
-  }))
+  })),
+  on(fetchAlbumsForTrRequest , state => ({...state, fetchLoading: true})),
+  on(fetchAlbumsForTrSuccess , (state, {albums}) => ({
+    ...state,
+    fetchLoading: false,
+    albums
+  })),
+  on(fetchAlbumsForTrFailure , (state, {error}) => ({
+    ...state,
+    fetchLoading: false,
+    fetchError: error,
+  })),
 
 
 

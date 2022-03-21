@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs";
-import {ApiTrackData, Track} from "../models/track.model";
+import {ApiTrackData, Track, TrackData} from "../models/track.model";
+import {AlbumData} from "../models/album.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,11 @@ export class TracksService {
         });
       })
     );
+  }
+
+  createTrack(trackData: TrackData) {
+
+    return this.http.post(environment.apiUrl + '/track', trackData);
   }
 
 }

@@ -1,9 +1,17 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {catchError, map, mergeMap, of} from "rxjs";
-import {fetchTracksRequest, fetchTracksSuccess} from "./tracks.actions";
+import {catchError, map, mergeMap, of, tap} from "rxjs";
+import {
+  createTrackFailure,
+  createTrackRequest,
+  createTrackSuccess,
+  fetchTracksRequest,
+  fetchTracksSuccess
+} from "./tracks.actions";
 import {TracksService} from "../services/tracks.service";
-import {fetchAlbumsFailure} from "./albums.actions";
+import {createAlbumSuccess, fetchAlbumsFailure} from "./albums.actions";
+import {createArtistFailure, createArtistRequest} from "./artists.actions";
+import {Router} from "@angular/router";
 
 
 @Injectable()
@@ -11,6 +19,7 @@ export class TracksEffects {
   constructor(
     private actions: Actions,
     private trackService: TracksService,
+    private router: Router,
   ) {}
 
   fetchTracks = createEffect(() => this.actions.pipe(
@@ -21,9 +30,18 @@ export class TracksEffects {
           error: 'Something went wrong',
         })))
       ))
-
     )))
 
+
+  createTrack = createEffect(()=> this.actions.pipe(
+    ofType(createTrackRequest),
+    mergeMap(({trackData})=> this.trackService.createTrack(trackData).pipe(
+     map(()=> createTrackSuccess()),
+     tap(()=> this.router.navigate(['/'])),
+      catchError(()=>of(createTrackFailure({error: 'No Track'}))),
+
+  ))
+  ))
 
 
 

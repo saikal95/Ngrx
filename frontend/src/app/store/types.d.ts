@@ -23,6 +23,7 @@ export type AppState = {
 
 export type AlbumsState = {
   albums: Album[],
+  // album: Album | null,
   fetchLoading: boolean,
   fetchError: null | string,
   createLoading: boolean,
@@ -35,6 +36,8 @@ export type TracksState = {
   oneTrack: Track | null,
   fetchLoading: boolean,
   fetchError: null | string,
+  createLoading: boolean,
+  createError: null | string,
 };
 
 export type TracksHistoryState = {

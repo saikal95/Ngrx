@@ -28,3 +28,14 @@ export const createAlbumFailure = createAction(
   props<{error: string}>()
 );
 
+
+export const fetchAlbumsForTrRequest = createAction('[Albums] Fetch Request');
+export const fetchAlbumsForTrSuccess = createAction(
+  '[Albums] Fetch Success',
+  props<{albums: Album[]}>()
+);
+export const fetchAlbumsForTrFailure = createAction(
+  '[Albums] Fetch Failure',
+  props<{error: string}>()
+);
+

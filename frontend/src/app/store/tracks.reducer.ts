@@ -1,8 +1,16 @@
 import {createReducer, on} from "@ngrx/store";
 import {TracksState} from "./types";
-import {fetchTracksFailure, fetchTracksRequest, fetchTracksSuccess} from "./tracks.actions";
+import {
+  createTrackFailure,
+  createTrackRequest,
+  createTrackSuccess,
+  fetchTracksFailure,
+  fetchTracksRequest,
+  fetchTracksSuccess
+} from "./tracks.actions";
 import {TrackHistory} from "../models/trackHistory.model";
 import {Track} from "../models/track.model";
+import {createAlbumFailure, createAlbumRequest, createAlbumSuccess} from "./albums.actions";
 
 
 const  initialState : TracksState = {
@@ -10,6 +18,8 @@ const  initialState : TracksState = {
   oneTrack: null,
   fetchLoading: false,
   fetchError: <null | string>null,
+  createLoading: false,
+  createError: null,
 }
 
 export const tracksReducer = createReducer(
@@ -26,4 +36,15 @@ export const tracksReducer = createReducer(
     fetchLoading: false,
     fetchError: error,
   })),
+  on(createTrackRequest, state => ({...state, createLoading: true})),
+  on(createTrackSuccess , state => ({...state, createLoading: false})),
+  on(createTrackFailure, (state, {error}) => ({
+    ...state,
+    createLoading: false,
+    createError: error,
+  }))
+
+
+
+
 );

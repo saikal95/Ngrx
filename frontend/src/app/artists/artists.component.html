@@ -3,6 +3,9 @@
 <div class="error" *ngIf="error | async">
   {{ error | async }}
 </div>
+<a routerLink="/track/new" mat-button *appHasRoles="['admin', 'user']">Add new Track</a>
+<a routerLink="/albums/new" mat-button *appHasRoles="['admin', 'user']">Add new Album</a>
+<a routerLink="/artists/new" mat-button *appHasRoles="['admin', 'user']">Add new Artist</a>
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div
       fxFlex.xs="100%"

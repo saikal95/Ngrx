@@ -24,21 +24,27 @@ router.get('/', async (req, res, next) => {
 });
 
 
-router.post('/',auth, permit, async (req, res, next) => {
+router.post('/',auth, async (req, res, next) => {
   try {
-    const trackData = {
-      title: req.body.title,
-      album: req.body.album,
-      duration: req.body.duration,
-    };
+    console.log(req.body);
 
     if (!req.body.title || !req.body.album || !req.body.duration) {
       return res.status(400).send({message: 'Insert requested data, it is not full'});
     }
+
+    const trackData = {
+      title: req.body.title,
+      album: req.body.album,
+      duration: req.body.duration,
+      is_published: false,
+    };
+
+
     const track = new Track(trackData);
     await track.save();
+    console.log(track);
 
-    return res.send({message: 'Created new Track', id: track._id});
+    return res.send(track);
   } catch (e) {
     next(e);
   }

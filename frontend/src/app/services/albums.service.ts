@@ -28,6 +28,23 @@ export class AlbumsService {
     );
   }
 
+  getAlbumsForTracks() {
+    return this.http.get<ApiAlbumData[]>(environment.apiUrl + '/albums').pipe(
+      map(response => {
+        return response.map( albumData => {
+          return new Album(
+            albumData._id,
+            albumData.title,
+            albumData.artist,
+            albumData.year,
+            albumData.image,
+          );
+        });
+      })
+    );
+  }
+
+
 
   createAlbum(albumData: AlbumData) {
     const formData = new FormData();

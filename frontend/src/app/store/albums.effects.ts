@@ -5,7 +5,7 @@ import {
   createAlbumFailure,
   createAlbumRequest,
   createAlbumSuccess,
-  fetchAlbumsFailure,
+  fetchAlbumsFailure, fetchAlbumsForTrFailure, fetchAlbumsForTrRequest, fetchAlbumsForTrSuccess,
   fetchAlbumsRequest,
   fetchAlbumsSuccess
 } from "./albums.actions";
@@ -32,6 +32,17 @@ export class AlbumsEffects {
       map(() => createAlbumSuccess()),
       tap(() => this.router.navigate(['/'])),
       catchError(() => of(createAlbumFailure({error: 'Wrong data'})))
+    ))
+  ));
+
+
+  fetchAlbumsforTrackks = createEffect(() => this.actions.pipe(
+    ofType(fetchAlbumsForTrRequest),
+    mergeMap(() => this.albumsService.getAlbumsForTracks().pipe(
+      map(albums => fetchAlbumsForTrSuccess ({albums})),
+      catchError(() => of(fetchAlbumsForTrFailure ({
+        error: 'Albums can not be gotten'
+      })))
     ))
   ));
 

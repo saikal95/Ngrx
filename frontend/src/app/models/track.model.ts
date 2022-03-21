@@ -4,8 +4,19 @@ export class Track {
     public title: string,
     public album: string,
     public duration: string,
+    public is_published: boolean = false,
   ) {}
 }
+
+
+export interface TrackData {
+  [key: string]: any,
+  title: string,
+  album: string,
+  duration: number,
+  is_published: boolean,
+}
+
 
 
 
@@ -14,6 +25,8 @@ export interface ApiTrackData {
   title: string,
   album: string,
   duration: string,
+  is_published: boolean,
 
 }
+
 

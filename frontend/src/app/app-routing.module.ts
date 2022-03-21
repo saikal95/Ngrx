@@ -6,6 +6,10 @@ import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {TrackHistoryComponent} from "./track-history/track-history.component";
 import {TracksComponent} from "./tracks/tracks.component";
+import {AddTrackComponent} from "./add-track/add-track.component";
+import {RoleGuardService} from "./services/role-guard.service";
+import {AddAlbumComponent} from "./add-album/add-album.component";
+import {AddArtistComponent} from "./add-artist/add-artist.component";
 
 const routes: Routes = [
   {path: '', component: ArtistsComponent},
@@ -14,7 +18,26 @@ const routes: Routes = [
   {path: 'trackHistory', component: TrackHistoryComponent},
   {path: ':id', component: AlbumsComponent},
   {path: ':id/tracks/:id', component: TracksComponent},
-  {path: ':id/tracks/:id/trackH/:id', component: TrackHistoryComponent}
+  {path: ':id/tracks/:id/trackH/:id', component: TrackHistoryComponent},
+  {
+    path: 'artists/new',
+    component: AddArtistComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['user', 'admin']}
+  },
+  {
+    path: 'albums/new',
+    component: AddAlbumComponent,
+    canActivate: [RoleGuardService],
+    data:{roles: ['user', 'admin']}
+  },
+  {
+    path: 'track/new',
+    component: AddTrackComponent,
+    canActivate: [RoleGuardService],
+    data: {roles: ['user', 'admin']},
+
+  }
 ];
 
 @NgModule({
