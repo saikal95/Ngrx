@@ -22,6 +22,7 @@ export class AlbumsService {
             albumtData.artist,
             albumtData.year,
             albumtData.image,
+            albumtData.is_published
           );
         });
       })
@@ -38,6 +39,7 @@ export class AlbumsService {
             albumData.artist,
             albumData.year,
             albumData.image,
+            albumData.is_published,
           );
         });
       })

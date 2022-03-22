@@ -26,7 +26,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/',auth, async (req, res, next) => {
   try {
-    console.log(req.body);
 
     if (!req.body.title || !req.body.album || !req.body.duration) {
       return res.status(400).send({message: 'Insert requested data, it is not full'});

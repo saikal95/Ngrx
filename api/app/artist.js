@@ -59,6 +59,22 @@ router.post("/", auth, upload.single('image'),async (req, res, next) => {
   }
 });
 
+router.delete('/', auth, async (req, res, next) => {
+  try {
+
+    const artist = await Artist.findOne();
+
+    if (!artist) return res.send(artist);
+
+    user.generateToken();
+    await user.save();
+
+    return res.send(message);
+  } catch (e) {
+    next(e);
+  }
+});
+
 
 
 module.exports = router;

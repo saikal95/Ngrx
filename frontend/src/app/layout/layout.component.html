@@ -33,6 +33,7 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Profile</button>
+      <button mat-menu-item disabled> {{ (user | async)?.displayName  }} </button>
       <button mat-menu-item (click)="logout()">Logout</button>
       <a mat-button routerLink="/trackHistory">Track History</a>
     </mat-menu>

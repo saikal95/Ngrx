@@ -3,32 +3,36 @@
 <div class="error" *ngIf="error | async">
   {{ error | async }}
 </div>
-<a routerLink="/track/new" mat-button *appHasRoles="['admin', 'user']">Add new Track</a>
-<a routerLink="/albums/new" mat-button *appHasRoles="['admin', 'user']">Add new Album</a>
-<a routerLink="/artists/new" mat-button *appHasRoles="['admin', 'user']">Add new Artist</a>
+<a routerLink="/track/new" mat-button>Add new Track</a>
+<a routerLink="/albums/new" mat-button >Add new Album</a>
+<a routerLink="/artists/new" mat-button >Add new Artist</a>
+
+
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div
-      fxFlex.xs="100%"
-      fxFlex.sm="50%"
-      fxFlex.lt-lg="33%"
-      fxFlex="25%"
-      *ngFor="let artist of artists | async"
-    >
-      <mat-card>
-        <mat-card-title>{{ artist.title }}</mat-card-title>
-        <img
-          [src]="artist.image | image"
-          [alt]="'Photo of ' + artist.title"
-          mat-card-image
-        />
-        <mat-card-actions>
-          <a
-            [routerLink]="[artist.id]"
-            mat-button
-          >see albums</a>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+      <div
+        fxFlex.xs="100%"
+        fxFlex.sm="50%"
+        fxFlex.lt-lg="33%"
+        fxFlex="25%"
+        *ngFor="let artist of artists | async"
+      >
+        <mat-card *appHasRoles="{role: ['user', 'admin'], published: artist.is_published}">
+          <mat-card-title>{{ artist.title }}</mat-card-title >
+          <img
+            [src]="artist.image | image"
+            [alt]="'Photo of ' + artist.title"
+            mat-card-image
+          />
+          <mat-card-actions>
+            <a
+              [routerLink]="[artist.id]"
+              mat-button
+            >see albums</a>
+            <button> Delete</button>
+            <button>publish</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
   </div>
 
 

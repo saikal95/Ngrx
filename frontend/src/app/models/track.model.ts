@@ -4,7 +4,7 @@ export class Track {
     public title: string,
     public album: string,
     public duration: string,
-    public is_published: boolean = false,
+    public is_published: boolean ,
   ) {}
 }
 

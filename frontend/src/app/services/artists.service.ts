@@ -21,6 +21,7 @@ export class ArtistsService {
             artistData.title,
             artistData.image,
             artistData.information,
+            artistData.is_published
           );
         });
       })

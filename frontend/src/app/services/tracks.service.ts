@@ -24,6 +24,7 @@ export class TracksService {
             trackData.title,
             trackData.album,
             trackData.duration,
+            trackData.is_published,
           );
         });
       })
